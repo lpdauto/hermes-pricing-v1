@@ -128,3 +128,15 @@ def handle_pricing(args: dict, **kwargs) -> str:
         })
     except Exception as exc:
         return json.dumps({"pricing_status": "ERROR", "pricing_method": METHOD_VERSION, "reason": str(exc)})
+
+
+def register_tools(ctx) -> None:
+    """Register PRICING_V1 during Hermes tool discovery."""
+    from .schemas import PRICING_V1
+
+    ctx.register_tool(
+        name="pricing_v1",
+        toolset="pricing_v1",
+        schema=PRICING_V1,
+        handler=handle_pricing,
+    )

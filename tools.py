@@ -80,16 +80,16 @@ def _lookup_base(make, model, year, engine):
             return None, "VEHICLE_NOT_IN_BUY_LIST"
     return spec["base"], None
 
-def handle_pricing(args: dict, **kwargs) -> str:
+def handle_pricing(**kwargs) -> str:
     try:
-        make = args.get("make")
-        model = args.get("model")
-        year = args.get("year")
-        engine = args.get("engine")
-        mileage = args.get("mileage")
-        mileage_status = args.get("mileage_status", "ACTUAL")
-        run_status = args.get("run_status", "")
-        front_risk = args.get("front_risk", "NORMAL_MODERATE")
+        make = kwargs.get("make")
+        model = kwargs.get("model")
+        year = kwargs.get("year")
+        engine = kwargs.get("engine")
+        mileage = kwargs.get("mileage")
+        mileage_status = kwargs.get("mileage_status", "ACTUAL")
+        run_status = kwargs.get("run_status", "")
+        front_risk = kwargs.get("front_risk", "NORMAL_MODERATE")
 
         base, err = _lookup_base(make, model, year, engine)
         if err:
@@ -139,4 +139,5 @@ def register_tools(ctx) -> None:
         toolset="pricing_v1",
         schema=PRICING_V1,
         handler=handle_pricing,
+        description="Deterministic auction max-hammer calculator using approved PRICING_V1 rules.",
     )

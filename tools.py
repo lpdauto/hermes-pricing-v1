@@ -83,14 +83,14 @@ def _lookup_base(make, model, year, engine):
 def handle_pricing(params: dict, **kwargs) -> str:
     del kwargs
     try:
-        make = kwargs.get("make")
-        model = kwargs.get("model")
-        year = kwargs.get("year")
-        engine = kwargs.get("engine")
-        mileage = kwargs.get("mileage")
-        mileage_status = kwargs.get("mileage_status", "ACTUAL")
-        run_status = kwargs.get("run_status", "")
-        front_risk = kwargs.get("front_risk", "NORMAL_MODERATE")
+        make = params.get("make")
+model = params.get("model")
+year = params.get("year")
+engine = params.get("engine")
+mileage = params.get("mileage")
+mileage_status = params.get("mileage_status", "ACTUAL")
+run_status = params.get("run_status", "")
+front_risk = params.get("front_risk", "NORMAL_MODERATE")
 
         base, err = _lookup_base(make, model, year, engine)
         if err:

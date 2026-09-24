@@ -1,0 +1,5 @@
+name: pricing-v1
+version: "1.0"
+description: Deterministic PRICING_V1 calculator for approved auction vehicles
+provides_tools:
+  - pricing_v1

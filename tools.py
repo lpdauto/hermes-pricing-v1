@@ -80,7 +80,8 @@ def _lookup_base(make, model, year, engine):
             return None, "VEHICLE_NOT_IN_BUY_LIST"
     return spec["base"], None
 
-def handle_pricing(**kwargs) -> str:
+def handle_pricing(params: dict, **kwargs) -> str:
+    del kwargs
     try:
         make = kwargs.get("make")
         model = kwargs.get("model")
